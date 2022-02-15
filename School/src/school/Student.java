@@ -1,7 +1,5 @@
 package school;
 
-
-
 public class Student extends Person{
     public static enum Transportation{
         WALK,CAR,BUS,BIKE
@@ -20,6 +18,14 @@ public class Student extends Person{
     }
     public String getInfo(){
         return(super.getInfo() + " " + gradeLevel + " " + transportaion);
+    }
+    public static void PrintInfo(){
+        System.out.println("=========================================");
+        //for(Person:people);
+
+        for(int i = 0; i<people.size();i++){
+            System.out.println(people.get(i).getInfo());
+        }
     }
     
 }

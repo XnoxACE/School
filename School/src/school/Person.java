@@ -1,5 +1,5 @@
 package school;
-
+import java.util.ArrayList;
 
 
 public class Person {
@@ -7,9 +7,12 @@ public class Person {
     public static enum Gender{
         MALE,FEMALE
     }
+    
+    protected static ArrayList<Person> people = new ArrayList<Person>();
     private static int numPeople = 0;
     
     //Instance Variables
+    
     private String name;
     private Date date;
     private Gender gender;
@@ -35,7 +38,9 @@ public class Person {
             date = new Date();
         else 
             date = new Date(_day, _month, _year);
+        people.add(this);
     }
+    
 
     
     
