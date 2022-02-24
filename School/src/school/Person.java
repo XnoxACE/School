@@ -1,67 +1,77 @@
 package school;
 import java.util.ArrayList;
 
-
-public class Person {
-    //Class Variables
-    public static enum Gender{
+abstract class Person {
+    public static enum Gender {
         MALE,FEMALE
-    }
+    };     
     
-    protected static ArrayList<Person> people = new ArrayList<Person>();
-    private static int numPeople = 0;
-    
-    //Instance Variables
-    
+    protected static ArrayList<Person> people = new ArrayList<Person>();         
+    private static int numPeople = 0; 
     private String name;
     private Date date;
     private Gender gender;
     
-    
-    //Default Constructor
-    public Person(){
-        initPerson("Empty", 0, 0, 0, Gender.MALE);
+//Constructors    
+    public Person() {
+        initPerson("No Name",0,0,0,Gender.FEMALE);
     }
-    public Person(String name_, Date _date, Gender _gender){
-        initPerson(name_, _date.getDay(), _date.getMonth(), _date.getYear(), _gender);
+    public Person(String _name,int _day,int _month,int _year,Gender _gender) {
+        initPerson(_name,_day,_month,_year,_gender);
     }
-    //Constructor
-    public Person(String name_, int day_, int month_, int year_, Gender _gender){
-        initPerson(name_, day_, month_, year_, _gender);
+    public Person(String _name,Date _date,Gender _gender) {
+        initPerson(_name,_date.getDay(),_date.getMonth(),_date.getYear(),_gender);
     }
-    
-    private void initPerson(String _name, int _day, int _month, int _year, Gender _gender){
+    private void initPerson(String _name,int _day,int _month,int _year,Gender _gender) {
         numPeople++;
         name = _name;
         gender = _gender;
-        if(_day == 0)
-            date = new Date();
-        else 
-            date = new Date(_day, _month, _year);
+        if (_day == 0)
+            date = new Date();  
+        else
+            date = new Date(_day,_month,_year);  
         people.add(this);
     }
-    
+            
+//Accessors    
+    public static int getNumPeople() {
+        return (numPeople);
+    }
+            
+    public String getName() {
+        return (name);
+    }
+    public Gender getGender() {
+        return (gender);
+    }
+    public Date getDate() {
+        return (date.getDate());
+    }
+    public String getInfo() {
+        return (name + " " + date.getInfo() + " " + gender);
+    }
+    public static void PrintInfo() {
+        System.out.println("PrintInfo Person =============");
 
-    
-    
-    
-    //Accsessors
-   
-    public String getName(){
-        return(name);
+//Extended for loop ,   For each loop.        
+        for (Person aPerson : people){
+            System.out.println(aPerson.getInfo());
+        }
+
+//        for (int i=0;i<people.size();i++) {
+//            System.out.println(people.get(i).getInfo());
+//        }
+
+    }    
+//Mutators
+    public void setName(String _name) {
+        name = _name;
     }
-    public String getInfo(){ 
-        String info = name + " " + date.getInfo() + " " + gender;
-        return(info);
+    public void setGender(Gender _gender) {
+        gender = _gender;
     }
-    public static int getNumPeople(){
-        return(numPeople);
-    }
-    
-    //Mutators
-    public void setName(String name_){
-       name = name_;
+    public void setDate(Date _date) {
+        date.setDate(date);
     }
     
-   
 }
