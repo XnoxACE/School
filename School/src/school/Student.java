@@ -2,6 +2,9 @@ package school;
 
 public class Student extends Person {
     private static int numStudents = 0;    
+
+    
+    
     public static enum Transportation {
         WALK,CAR,BUS,BIKE
     };    
@@ -9,7 +12,7 @@ public class Student extends Person {
     private int id;    
     private int gradeLevel;
     private Transportation transportation;
-    
+    private Course courses[] = new Course[Course.NUM_SECTIONS];
 //Constructors    
     public Student() {
         
@@ -48,7 +51,12 @@ public class Student extends Person {
         return (transportation);
     }      
     public String getInfo() {
-        return (super.getInfo() + " " + gradeLevel + " " + transportation);
+        return (super.getInfo() + " " + gradeLevel + " " + transportation+ " " + 
+                (courses[0] == null ? "No Class" : courses[0].getName()) + ", " +
+                (courses[1] == null ? "No Class" : courses[1].getName()) + ", " +
+                (courses[2] == null ? "No Class" : courses[2].getName())+ ", " +
+                (courses[3] == null ? "No Class" : courses[3].getName())
+                );
     }
     public int getId()
     {
@@ -70,6 +78,9 @@ public class Student extends Person {
         id = numStudents;
         gradeLevel = gradelevel_;
         transportation = _transportation;
+    }
+    public void addCourse(Course _course){
+        courses[_course.getPeriod()] = _course;
     }
 
 

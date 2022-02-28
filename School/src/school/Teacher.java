@@ -7,6 +7,7 @@ public class Teacher extends Person {
     private static int numTeachers;
     private int yearsTeaching;
     private Supervisor supervisor;
+    private Course courses[] = new Course[Course.NUM_SECTIONS];
     
     public Teacher(){
         initTeacher(0, Supervisor.NONE);
@@ -30,7 +31,12 @@ public class Teacher extends Person {
         return(supervisor);
     }
     public String getInfo() {
-        return (super.getInfo() + " " + yearsTeaching + " " + supervisor);
+        return (super.getInfo() + " " + yearsTeaching + " " + supervisor + " " + 
+                (courses[0] == null ? "No Class" : courses[0].getName()) + ", " +
+                (courses[1] == null ? "No Class" : courses[1].getName()) + ", " +
+                (courses[2] == null ? "No Class" : courses[2].getName())+ ", " +
+                (courses[3] == null ? "No Class" : courses[3].getName())
+                );
     }
     
     public void setYearsTeaching(int _yearsTeaching){
@@ -50,10 +56,12 @@ public class Teacher extends Person {
                 System.out.println(aPerson.getInfo());
         }
 
-//        for (int i=0;i<people.size();i++) {
-//            System.out.println(people.get(i).getInfo());
-//        }
-
-    } 
+    }
+    public void addCourse(Course _course){
+        courses[_course.getPeriod()] = _course;
+    }
+    public Course getCourse(int Period){
+        return courses[Period];
+    }
    
 }
