@@ -37,6 +37,18 @@ abstract class Person {
     public static int getNumPeople() {
         return (numPeople);
     }
+    
+    public static void PrintInfo() {
+        System.out.println("PrintInfo Person=============");
+//Extended for loop ,   For each loop.        
+        for (Person aPerson  : people)
+        {
+            System.out.println(aPerson.getInfo());
+        }
+//        for (int i=0;i<people.size();i++) {
+//            System.out.println(people.get(i).getInfo());
+//        }
+    }        
             
     public String getName() {
         return (name);
@@ -50,19 +62,6 @@ abstract class Person {
     public String getInfo() {
         return (name + " " + date.getInfo() + " " + gender);
     }
-    public static void PrintInfo() {
-        System.out.println("PrintInfo Person =============");
-
-//Extended for loop ,   For each loop.        
-        for (Person aPerson : people){
-            System.out.println(aPerson.getInfo());
-        }
-
-//        for (int i=0;i<people.size();i++) {
-//            System.out.println(people.get(i).getInfo());
-//        }
-
-    }    
 //Mutators
     public void setName(String _name) {
         name = _name;

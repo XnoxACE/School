@@ -5,7 +5,6 @@ public class Date {
     private int day;
     private int month;
     private int year;
-    
 
     public Date() {
         day = 1;
@@ -82,6 +81,5 @@ public class Date {
         month = date.month;
         year = date.year;          
     }    
-    
 
 }
