@@ -33,11 +33,11 @@ public class Course {
     }
     
 //Accessors       
-    public static int GetNumCourses() {
+    static int GetNumCourses() {
         return(numCourses);
     
     }
-    public static void PrintInfo() {
+    static void PrintInfo() {
         System.out.println("PrintInfo Course=============");
 //Extended for loop ,   For each loop.        
         for (Course aCourse  : courses)
@@ -47,7 +47,7 @@ public class Course {
     }          
     
     
-    public String getInfo() {
+    String getInfo() {
 /*        
         if (teacher == null)
             return (name + " " + type + " " + period + " No Teacher");
@@ -59,7 +59,7 @@ public class Course {
         (teacher == null ? " No Teacher" : teacher.getName()) );
     }
     
-    public void displayStudents() {
+    void displayStudents() {
         System.out.println("students in " + name + " ================");
         for (Student aStudent : students)
             System.out.println(aStudent.getName());
@@ -85,16 +85,16 @@ public class Course {
     }
     
 //Mutators
-    public void setName(String _name) {
+    void setName(String _name) {
         name = _name;
     }    
-    public void setType(Type _type) {
+    void setType(Type _type) {
         type = _type;
     }       
-    public void setTeacher(Teacher _teacher) {
+    void setTeacher(Teacher _teacher) {
         teacher = _teacher;
     }
-    public void addStudent(Student _student) {
+    void addStudent(Student _student) {
         if (_student == null)
             return;
 //Don't add the student to the course if the student is already in the course.        
@@ -103,22 +103,42 @@ public class Course {
 
         students.add(_student);
     }
-
-// Queries
-    public void studentsGpaGreaterThan(double minGPA){
-        System.out.println("=====StudentsGreaterThan=====");   
-        for(int i = 0; i < students.size();i++){
-            if(students.get(i).getGPA() > minGPA)
-                System.out.println(students.get(i).getName());
-        }        
-    }
-    public static void MoreStudentsThan (int minStudents){
-        System.out.println("=====MoreStudentsThan=====");   
-        for(int i = 0; i < courses.size();i++){
-            if(courses.get(i).students.size() > minStudents)
-                System.out.println(courses.get(i).name);
+    
+    
+//Queries==========================
+       
+    void studentsGpaGreaterThan(double gradeValue) {
+       System.out.println("==studentsGpaGreaterThan==");
+//print the names of the students of this course that have a gpa 
+//greater than gradeValue.
+        for (Student aStudent : students) {
+            if (aStudent.getGPA() > gradeValue)
+                System.out.println(aStudent.getName());       
         }
     }
-        
+
+ 
+
+    static void MoreStudentsThan(int numCourses) {
+        System.out.println("==MoreStudentsThan==");
+        for (Course aCourse  : courses)
+        {
+            if (aCourse.students.size() > numCourses)
+                System.out.println(aCourse.getName());
+        }        
+    }
+    static void FemaleTeacher(){
+        System.out.println("==FemaleTeacher==");
+        for (Course aCourse  : courses)
+        {
+            if (aCourse.getTeacher().getGender() != null && 
+                aCourse.getTeacher().getGender() == Person.Gender.FEMALE)
+            {                
+                System.out.println(aCourse.getName());
+            }
+                
+        }  
+    }
+    
     
 }

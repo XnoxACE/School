@@ -56,7 +56,7 @@ public class Teacher extends Person {
         + " " + (courses[0] == null ? "No Course"  :  courses[0].getName() ) 
         + " " + (courses[1] == null ? "No Course"  :  courses[1].getName() )
         + " " + (courses[2] == null ? "No Course"  :  courses[2].getName() )
-        + " " + (courses[3] == null ? "No Course"  :  courses[3].getName() )    );
+        + " " + (courses[3] == null ? "No Course"  :  courses[3].getName())    );
     }
     
 //Mutators
@@ -69,5 +69,31 @@ public class Teacher extends Person {
         
     public void addCourse(Course _course) {
         courses[_course.getPeriod()] = _course;
+    }
+    boolean TeachesType(Course.Type type_){
+        System.out.println("==TeachesType==");
+        for (Course aCourse  : courses)
+        {
+            if(aCourse != null && aCourse.getType() == type_){
+                return true;
+            }
+        }       
+        return false;
+    }
+    static Teacher MostYears(){
+        Teacher mostYearsTeacher = null;
+        int mostYerasNum = 0;
+        
+        for (Person aPerson  : people)
+        {
+            if (aPerson instanceof Teacher){
+                if(((Teacher) aPerson).getYearsTeaching() > mostYearsNum)
+            }
+                    
+                
+        }
+        
+        return mostYearsTeacher;
+        
     }
 }

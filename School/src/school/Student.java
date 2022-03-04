@@ -11,6 +11,7 @@ public class Student extends Person {
     private Transportation transportation;
     private Course courses[] = new Course[Course.NUM_SECTIONS];
     private double gradeScores[] = new double[Course.NUM_SECTIONS];
+    
 //Constructors    
     public Student() {
         initStudent(9,Transportation.WALK);
@@ -26,6 +27,8 @@ public class Student extends Person {
         id = numStudents;
         gradeLevel = _gradeLevel;
         transportation = _transportation;
+        for (int i=0;i<Course.NUM_SECTIONS;i++)
+            gradeScores[i] = -1;
     }
     
 //Accessors   
@@ -55,29 +58,30 @@ public class Student extends Person {
     public Course getCourse(int period) {
         return(courses[period]);
     }    
+    public double getGPA() {
+        int numGrades = 0;
+        double sum = 0;
+        for (double val : gradeScores)
+        {
+            if (val >= 0) {
+                sum += val;
+                numGrades++;
+            }
+        }
+        if (numGrades == 0)
+            return (0);
+        return (sum/numGrades);
+    }
     public String getInfo() {    
-        
-        
         return (super.getInfo() + " " + gradeLevel + " " + transportation  + " " + id + " " + getGPA()
-        + " " + (courses[0] == null ? "No Course"  :  courses[0].getName()) 
-        + " " + (courses[1] == null ? "No Course"  :  courses[1].getName())
-        + " " + (courses[2] == null ? "No Course"  :  courses[2].getName())
+        + " " + (courses[0] == null ? "No Course"  :  courses[0].getName() ) 
+        + " " + (courses[1] == null ? "No Course"  :  courses[1].getName() )
+        + " " + (courses[2] == null ? "No Course"  :  courses[2].getName() )
         + " " + (courses[3] == null ? "No Course"  :  courses[3].getName())    );
         
         
     }
-    public double getGPA(){
-        double gpa = 0;
-        double ac = 0;
-        for(int i = 0; i<courses.length;i++)
-            if(courses[i] != null){
-                gpa += gradeScores[i];
-                ac++;
-            }
-        if(ac == 0)
-            return 0.0;
-        return gpa/ac; 
-    }
+    
 //Mutators
     public void setGradeLevel(int _gradeLevel) {
         gradeLevel = _gradeLevel;
@@ -85,14 +89,33 @@ public class Student extends Person {
     public void setTransportation(Transportation _transportation) {
         transportation = _transportation;
     }
-    public void addCourse(Course _course, double _gradeScore) {
-        if(_course.getPeriod() < 0 || _course.getPeriod() >= Course.NUM_SECTIONS)
-            return;
-       
-        if(courses[_course.getPeriod()] != null)
-                return;
+    public void addCourse(Course _course,double _gradeScore) {
         
+//Make sure the period of the course is not outside the valid periods.        
+        if (_course.getPeriod() < 0 || _course.getPeriod() >= Course.NUM_SECTIONS)
+            return;
+//Don't add the course if the period already has another course.        
+        if (courses[_course.getPeriod()] != null)
+            return;
         courses[_course.getPeriod()] = _course;
         gradeScores[_course.getPeriod()] = _gradeScore;
-    }    
+    }  
+//Queries
+    static void TravelBy(Transportation transportation_){
+        System.out.println("======TravelBy======");
+        for (Person aPerson  : people)
+        {
+            if (aPerson instanceof Student){
+                if(((Student) aPerson).transportation == transportation_){
+                    System.out.println(aPerson.getName());
+                }
+            }
+                
+        }
+       
+        
+    }
+    
+    
+    
 }
