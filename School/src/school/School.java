@@ -14,7 +14,7 @@ public class School {
         Person manny = new Student("Manny",new Date(7,1,2003),Person.Gender.MALE,11,Student.Transportation.BIKE);
                          
         Person mean = new Teacher("Mr. Mean",new Date(3,11,1925),Person.Gender.MALE,57,Teacher.Supervisor.COACH);
-        Person nice = new Teacher("Ms. Nice",new Date(25,12,1994),Person.Gender.FEMALE,2,Teacher.Supervisor.ADVISOR);
+        Person nice = new Teacher("Ms. Nice",new Date(25,12, 1999),Person.Gender.FEMALE,2,Teacher.Supervisor.ADVISOR);
         Person hudson = new Teacher("Ms. Hudson",new Date(13,2,1975),Person.Gender.FEMALE,22,Teacher.Supervisor.ADVISOR);
         Person gonzalez = new Teacher("Mr. Gonzalez",new Date(4,5,1980),Person.Gender.MALE,15,Teacher.Supervisor.LEADERSHIP);        
 
@@ -28,19 +28,24 @@ public class School {
 /////////////////////
         speech.setTeacher((Teacher)nice);
         ((Teacher)nice).addCourse(speech);
+        
+        speech.setTeacher((Teacher)hudson);
+        ((Teacher)hudson).addCourse(speech);
+        
         apush.setTeacher((Teacher)nice);
         ((Teacher)nice).addCourse(apush);
 
-        biology.setTeacher((Teacher)mean);
-        ((Teacher)mean).addCourse(biology);
+        biology.setTeacher((Teacher)gonzalez);
+        ((Teacher)gonzalez).addCourse(biology);
         dance.setTeacher((Teacher)mean);
         ((Teacher)mean).addCourse(dance);
 
         spanish.setTeacher((Teacher)hudson);
         ((Teacher)hudson).addCourse(spanish);
 
-        calculus.setTeacher((Teacher)gonzalez);
-        ((Teacher)gonzalez).addCourse(calculus);
+        calculus.setTeacher((Teacher)mean);
+        ((Teacher)mean).addCourse(calculus);
+        
         stats.setTeacher((Teacher)gonzalez);
         ((Teacher)gonzalez).addCourse(stats);
 /////////////////////
@@ -117,6 +122,12 @@ public class School {
         if(teacher != null)
             System.out.println(teacher.getName() + " has taught the longest.");
         
+        Teacher.CourseType(Course.Type.ENGLISH);
+        
+        Student student = ((Student)koko);
+        teacher = student.YoungestTeacher();
+        if(teacher != null)
+            System.out.println(teacher.getName());
         
     }
     

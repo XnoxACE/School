@@ -80,20 +80,38 @@ public class Teacher extends Person {
         }       
         return false;
     }
+//Queries==========================
     static Teacher MostYears(){
+        System.out.println("MostYears===============");
         Teacher mostYearsTeacher = null;
-        int mostYerasNum = 0;
-        
+        int mostYearsNum = 0;
         for (Person aPerson  : people)
         {
             if (aPerson instanceof Teacher){
-                if(((Teacher) aPerson).getYearsTeaching() > mostYearsNum)
+                if(((Teacher)aPerson).getYearsTeaching() > mostYearsNum){
+                    mostYearsNum = ((Teacher) aPerson).getYearsTeaching(); 
+                    mostYearsTeacher = ((Teacher)aPerson);
+                }
             }
-                    
-                
         }
-        
         return mostYearsTeacher;
+    }
+    static void CourseType(Course.Type type){
+        
+        System.out.println("CourseType================");
+        for (Person aPerson  : people)
+        {
+            if (aPerson instanceof Teacher){
+                for(int i = 0; i < ((Teacher) aPerson).courses.length; i++){
+                    
+                    if(((Teacher) aPerson).courses[i] != null)
+                        if(((Teacher) aPerson).courses[i].getType() == type){
+                            System.out.println(aPerson.getName());
+                    }
+                }
+                
+            }
+        }
         
     }
 }

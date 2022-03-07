@@ -100,7 +100,10 @@ public class Student extends Person {
         courses[_course.getPeriod()] = _course;
         gradeScores[_course.getPeriod()] = _gradeScore;
     }  
-//Queries
+
+
+
+//Queries==========================
     static void TravelBy(Transportation transportation_){
         System.out.println("======TravelBy======");
         for (Person aPerson  : people)
@@ -109,13 +112,31 @@ public class Student extends Person {
                 if(((Student) aPerson).transportation == transportation_){
                     System.out.println(aPerson.getName());
                 }
-            }
-                
-        }
-       
-        
+            }           
+        }   
     }
     
-    
-    
+    Teacher YoungestTeacher(Student _student){
+        Teacher youngt = null;
+        int age = 110;
+        for (Person aPerson  : people)
+        {
+            if (aPerson instanceof Student){
+                
+                for(int i = 0; i < ((Student) aPerson).courses.length; i++){
+                    
+                    if(((Student) aPerson).courses[i] != null){
+                        
+                        Date date = new Date(((Student) aPerson).courses[i].getTeacher().getDate());
+                        if(date.getYearsOld() < age){
+                            age = date.getYearsOld();
+                            youngt = ((Student) aPerson).courses[i].getTeacher();
+                        }               
+                    }
+                }
+                
+            }
+        }
+        return youngt;
+    }
 }

@@ -1,5 +1,6 @@
 package school;
 import java.util.ArrayList;
+import static school.Person.people;
 public class Course {
     final public static int NUM_SECTIONS = 4;
     private static int numCourses = 0;
@@ -116,9 +117,6 @@ public class Course {
                 System.out.println(aStudent.getName());       
         }
     }
-
- 
-
     static void MoreStudentsThan(int numCourses) {
         System.out.println("==MoreStudentsThan==");
         for (Course aCourse  : courses)
@@ -138,7 +136,6 @@ public class Course {
             }
                 
         }  
-    }
-    
+    }   
     
 }

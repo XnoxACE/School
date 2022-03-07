@@ -1,5 +1,6 @@
 package school;
 import java.util.ArrayList;
+import school.Date;
 
 abstract class Person {
     public static enum Gender {
@@ -61,6 +62,9 @@ abstract class Person {
     }
     public String getInfo() {
         return (name + " " + date.getInfo() + " " + gender);
+    }
+    public int getAge(){
+        return 
     }
 //Mutators
     public void setName(String _name) {
