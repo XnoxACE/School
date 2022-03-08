@@ -121,7 +121,7 @@ public class Student extends Person {
         Teacher youngTeacher = null;
         int age = 999;
         for(int i = 0; i<courses.length; i++){
-            if(courses[i] != null){
+            if(courses[i].getTeacher() != null){
                 Date teacher = new Date(this.courses[i].getTeacher().getDate());
                 if(teacher.getYearsOld() < age){
                     age = teacher.getYearsOld();
@@ -129,6 +129,6 @@ public class Student extends Person {
                 }
             }
         }
-        return null;
+        return youngTeacher; 
     }
 }
