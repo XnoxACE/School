@@ -116,27 +116,19 @@ public class Student extends Person {
         }   
     }
     
-    Teacher YoungestTeacher(Student _student){
-        Teacher youngt = null;
-        int age = 110;
-        for (Person aPerson  : people)
-        {
-            if (aPerson instanceof Student){
-                
-                for(int i = 0; i < ((Student) aPerson).courses.length; i++){
-                    
-                    if(((Student) aPerson).courses[i] != null){
-                        
-                        Date date = new Date(((Student) aPerson).courses[i].getTeacher().getDate());
-                        if(date.getYearsOld() < age){
-                            age = date.getYearsOld();
-                            youngt = ((Student) aPerson).courses[i].getTeacher();
-                        }               
-                    }
+    Teacher YoungestTeacher(){
+        System.out.println("Youngest Teacher=======");
+        Teacher youngTeacher = null;
+        int age = 999;
+        for(int i = 0; i<courses.length; i++){
+            if(courses[i] != null){
+                Date teacher = new Date(this.courses[i].getTeacher().getDate());
+                if(teacher.getYearsOld() < age){
+                    age = teacher.getYearsOld();
+                    youngTeacher = this.courses[i].getTeacher();
                 }
-                
             }
         }
-        return youngt;
+        return null;
     }
 }

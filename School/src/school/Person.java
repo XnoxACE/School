@@ -63,9 +63,7 @@ abstract class Person {
     public String getInfo() {
         return (name + " " + date.getInfo() + " " + gender);
     }
-    public int getAge(){
-        return 
-    }
+    
 //Mutators
     public void setName(String _name) {
         name = _name;
