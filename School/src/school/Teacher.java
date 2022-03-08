@@ -70,48 +70,78 @@ public class Teacher extends Person {
     public void addCourse(Course _course) {
         courses[_course.getPeriod()] = _course;
     }
-    boolean TeachesType(Course.Type type_){
-        System.out.println("==TeachesType==");
-        for (Course aCourse  : courses)
-        {
-            if(aCourse != null && aCourse.getType() == type_){
-                return true;
-            }
-        }       
-        return false;
-    }
+    
 //Queries==========================
-    static Teacher MostYears(){
-        System.out.println("MostYears===============");
+    
+    public boolean TeachesType(Course.Type _type) {
+        System.out.println("==TeachesType==========");
+        for (Course aCourse : courses) {
+            if (aCourse != null && aCourse.getType() == _type)
+                return (true);
+        }
+        return (false);
+    }
+    
+    public static Teacher MostYears() {
+        System.out.println("==MostYears==========");
         Teacher mostYearsTeacher = null;
         int mostYearsNum = 0;
         for (Person aPerson  : people)
         {
-            if (aPerson instanceof Teacher){
-                if(((Teacher)aPerson).getYearsTeaching() > mostYearsNum){
-                    mostYearsNum = ((Teacher) aPerson).getYearsTeaching(); 
-                    mostYearsTeacher = ((Teacher)aPerson);
+            if (aPerson instanceof Teacher) {  
+                if ( ((Teacher)aPerson).getYearsTeaching() > mostYearsNum ) {
+                    mostYearsNum = ((Teacher)aPerson).getYearsTeaching();
+                    mostYearsTeacher = (Teacher)aPerson;
+                }
+            }   
+        }
+        return (mostYearsTeacher);
+    }
+    
+    public static void CourseType(Course.Type _type) {
+        System.out.println("==CourseType==========");
+        for (Person aPerson  : people)
+        {
+            if (aPerson instanceof Teacher) {
+                boolean teachesType = false;
+                for (Course aCourse : ((Teacher)aPerson).courses) {
+                    if (aCourse != null && aCourse.getType() == _type)
+                        teachesType = true;
+                }
+                if (teachesType)
+                    System.out.println(aPerson.getName());
+            }
+        }        
+    }
+    boolean Teaches(Student student_){
+        System.out.println("====Teaches====");
+        for (Course aCourse : courses) {
+            if(aCourse != null){
+                for(int i = 0; i<aCourse.numStudents();i++){
+                    if(aCourse.getStudent(i) == student_)
+                        return true;
                 }
             }
         }
-        return mostYearsTeacher;
+        return false;
     }
-    static void CourseType(Course.Type type){
-        
-        System.out.println("CourseType================");
+    static void HaveStudentId(int id_){
         for (Person aPerson  : people)
         {
             if (aPerson instanceof Teacher){
-                for(int i = 0; i < ((Teacher) aPerson).courses.length; i++){
-                    
+                for(int i = 0; i<((Teacher) aPerson).courses.length;i++){
                     if(((Teacher) aPerson).courses[i] != null)
-                        if(((Teacher) aPerson).courses[i].getType() == type){
-                            System.out.println(aPerson.getName());
-                    }
+                        for(int j = 0; j<((Teacher) aPerson).courses[i].numStudents();j++)
+                            if(1==1)
+                            
+                        
+                    
+                    
+    
                 }
                 
             }
         }
-        
     }
+
 }

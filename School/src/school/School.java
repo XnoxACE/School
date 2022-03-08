@@ -14,7 +14,7 @@ public class School {
         Person manny = new Student("Manny",new Date(7,1,2003),Person.Gender.MALE,11,Student.Transportation.BIKE);
                          
         Person mean = new Teacher("Mr. Mean",new Date(3,11,1925),Person.Gender.MALE,57,Teacher.Supervisor.COACH);
-        Person nice = new Teacher("Ms. Nice",new Date(25,12, 1999),Person.Gender.FEMALE,2,Teacher.Supervisor.ADVISOR);
+        Person nice = new Teacher("Ms. Nice",new Date(25,12,1994),Person.Gender.FEMALE,2,Teacher.Supervisor.ADVISOR);
         Person hudson = new Teacher("Ms. Hudson",new Date(13,2,1975),Person.Gender.FEMALE,22,Teacher.Supervisor.ADVISOR);
         Person gonzalez = new Teacher("Mr. Gonzalez",new Date(4,5,1980),Person.Gender.MALE,15,Teacher.Supervisor.LEADERSHIP);        
 
@@ -27,27 +27,32 @@ public class School {
         Course stats = new Course("Stats",Course.Type.MATH,3);
 /////////////////////
         speech.setTeacher((Teacher)nice);
-        ((Teacher)nice).addCourse(speech);
-        
-        speech.setTeacher((Teacher)hudson);
-        ((Teacher)hudson).addCourse(speech);
-        
+        ((Teacher)nice).addCourse(speech);  //period 0  
         apush.setTeacher((Teacher)nice);
-        ((Teacher)nice).addCourse(apush);
+        ((Teacher)nice).addCourse(apush);  //period 1
 
-        biology.setTeacher((Teacher)gonzalez);
-        ((Teacher)gonzalez).addCourse(biology);
-        dance.setTeacher((Teacher)mean);
-        ((Teacher)mean).addCourse(dance);
-
-        spanish.setTeacher((Teacher)hudson);
-        ((Teacher)hudson).addCourse(spanish);
-
-        calculus.setTeacher((Teacher)mean);
-        ((Teacher)mean).addCourse(calculus);
+//        biology.setTeacher((Teacher)mean);
+//        ((Teacher)mean).addCourse(biology);  //period 2
         
+        dance.setTeacher((Teacher)mean);
+        ((Teacher)mean).addCourse(dance);  //period 2
+        calculus.setTeacher((Teacher)mean);
+        ((Teacher)mean).addCourse(calculus);  //period 3
+
+        
+        
+        spanish.setTeacher((Teacher)hudson);
+        ((Teacher)hudson).addCourse(spanish);  //period 1 
+
+        
+        
+//        calculus.setTeacher((Teacher)gonzalez);
+//        ((Teacher)gonzalez).addCourse(calculus);  //period 3
+        biology.setTeacher((Teacher)gonzalez);
+        ((Teacher)gonzalez).addCourse(biology);  //period 2
+ 
         stats.setTeacher((Teacher)gonzalez);
-        ((Teacher)gonzalez).addCourse(stats);
+        ((Teacher)gonzalez).addCourse(stats);  //period 3
 /////////////////////
         speech.addStudent((Student)fred);
         ((Student)fred).addCourse(speech,3.1);     //period 0
@@ -104,31 +109,124 @@ public class School {
         ((Student)manny).addCourse(calculus,4.0);  //period 3
          
 //////////////////////////////        
-        biology.studentsGpaGreaterThan(2.4);
+        biology.studentsGpaGreaterThan(3.4);
         
         Course.MoreStudentsThan(2);
         
         Student.TravelBy(Student.Transportation.BIKE);
         
+//easy to do        
         Course.FemaleTeacher();
         
-        if(((Teacher)hudson).TeachesType(Course.Type.FOREIGN_LANG))
-            System.out.println(hudson.getName() + " does teach " + Course.Type.FOREIGN_LANG);
+//medium challenging        
+        if (  ((Teacher)hudson).TeachesType(Course.Type.HISTORY))
+            System.out.println(hudson.getName() + " does teach " + Course.Type.HISTORY);
         else
-            System.out.println(hudson.getName() + " does not teach " + Course.Type.FOREIGN_LANG);
+            System.out.println(hudson.getName() + " does not teach " + Course.Type.HISTORY);
         
-        
+//medium challenging
         Teacher teacher = Teacher.MostYears();
-        if(teacher != null)
+        if (teacher != null)
             System.out.println(teacher.getName() + " has taught the longest.");
         
+//Very challenging        
         Teacher.CourseType(Course.Type.ENGLISH);
         
-        Student student = ((Student)koko);
-        teacher = student.YoungestTeacher();
-        if(teacher != null)
-            System.out.println(teacher.getName());
         
+//Very challenging
+        Student student = (Student)koko;
+        teacher = student.YoungestTeacher();
+        if (teacher != null)
+            System.out.println(teacher.getName() +
+            " is " + student.getName() + "'s youngest teacher.");
+        
+        Student.GradeLevel(11);
+        
+        
+        teacher = (Teacher)mean;
+        if (student.hasTeacher(teacher))
+            System.out.println(student.getName() + " has " + teacher.getName() + " as a teacher.");
+        else
+            System.out.println(student.getName() + " does not have " + teacher.getName() + " as a teacher.");
+        
+        
+        student = (Student)manny;
+        teacher = (Teacher)gonzalez;
+        if (teacher.Teaches(student))
+            System.out.println(teacher.getName() + " does teach " + student.getName());
+        else
+            System.out.println(teacher.getName() + " does not teach " + student.getName());
+        
+        
+        if (apush.hasStudent((Student)ann))
+            System.out.println(ann.getName() + " is a student in " + apush.getName());
+        else
+            System.out.println(ann.getName() + " is not a student in " + apush.getName());
+        
+        Course course = stats;
+        if (course.MoreMaleStudents())
+            System.out.println(course.getName() + " has more male students.");
+        else
+            System.out.println(course.getName() + " does not have more male students.");
+        
+        student = (Student)kiki;
+        Teacher.HaveStudentId(student.getId());
+        
+        
+        /*
+//Easy
+//Print the name of all the students in the passed in grade level.        
+        Student.GradeLevel(11);
+        
+//For a given course, return true if the passed in student is in the course.
+//Return false if not in the course.         
+        if (apush.hasStudent((Student)ann))
+            System.out.println(ann.getName() + " is a student in " + apush.getName());
+        else
+            System.out.println(ann.getName() + " is not a student in " + apush.getName());
+            
+//For a given teacher, return true if the teacher teaches the passed in period.
+//Return false if teacher does not teach that period.
+        int period = 1;
+        if (((Teacher)hudson).hasPeriod(period))
+            System.out.println(hudson.getName() + " does teach period " + period);
+        else
+            System.out.println(hudson.getName() + " does not teach period " + period);
+            
+//Medium
+//For the given student, return true if the passed in teacher teaches the student.
+//Return false if the teacher does not teach the student.
+        Student student = (Student)jojo;
+        teacher = (Teacher)mean;
+        if (student.hasTeacher(teacher))
+            System.out.println(student.getName() + " has " + teacher.getName() + " as a teacher.");
+        else
+            System.out.println(student.getName() + " does not have " + teacher.getName() + " as a teacher.");
+
+//For a given course, return true if the course has more male students than female students.
+//Return false if the course does not have more male students than female students.
+        Course course = stats;
+        if (course.MoreMaleStudents())
+            System.out.println(course.getName() + " has more male students.");
+        else
+            System.out.println(course.getName() + " does not have more male students.");
+            
+//Challenging
+//For a given teacher, return true if the passed in student is in the teachers class.
+//Return false if the student is not in the teacher's class.
+        student = (Student)manny;
+        teacher = (Teacher)gonzalez;
+        if (teacher.Teaches(student))
+            System.out.println(teacher.getName() + " does teach " + student.getName());
+        else
+            System.out.println(teacher.getName() + " does not teach " + student.getName());
+
+//Print the name of the teachers that teach the student with the passed in id.
+        student = (Student)kiki;
+        Teacher.HaveStudentId(student.getId());
+        
+            
+        */
     }
     
 }

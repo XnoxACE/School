@@ -1,6 +1,5 @@
 package school;
 import java.util.ArrayList;
-import static school.Person.people;
 public class Course {
     final public static int NUM_SECTIONS = 4;
     private static int numCourses = 0;
@@ -34,11 +33,11 @@ public class Course {
     }
     
 //Accessors       
-    static int GetNumCourses() {
+    public static int GetNumCourses() {
         return(numCourses);
     
     }
-    static void PrintInfo() {
+    public static void PrintInfo() {
         System.out.println("PrintInfo Course=============");
 //Extended for loop ,   For each loop.        
         for (Course aCourse  : courses)
@@ -48,7 +47,7 @@ public class Course {
     }          
     
     
-    String getInfo() {
+    public String getInfo() {
 /*        
         if (teacher == null)
             return (name + " " + type + " " + period + " No Teacher");
@@ -60,7 +59,7 @@ public class Course {
         (teacher == null ? " No Teacher" : teacher.getName()) );
     }
     
-    void displayStudents() {
+    public void displayStudents() {
         System.out.println("students in " + name + " ================");
         for (Student aStudent : students)
             System.out.println(aStudent.getName());
@@ -84,18 +83,20 @@ public class Course {
     public Student getStudent(int i) {
         return students.get(i);
     }
-    
+    public int numStudents() {
+        return (students.size());
+    }
 //Mutators
-    void setName(String _name) {
+    public void setName(String _name) {
         name = _name;
     }    
-    void setType(Type _type) {
+    public void setType(Type _type) {
         type = _type;
     }       
-    void setTeacher(Teacher _teacher) {
+    public void setTeacher(Teacher _teacher) {
         teacher = _teacher;
     }
-    void addStudent(Student _student) {
+    public void addStudent(Student _student) {
         if (_student == null)
             return;
 //Don't add the student to the course if the student is already in the course.        
@@ -108,8 +109,8 @@ public class Course {
     
 //Queries==========================
        
-    void studentsGpaGreaterThan(double gradeValue) {
-       System.out.println("==studentsGpaGreaterThan==");
+    public void studentsGpaGreaterThan(double gradeValue) {
+       System.out.println("==studentsGpaGreaterThan==========");
 //print the names of the students of this course that have a gpa 
 //greater than gradeValue.
         for (Student aStudent : students) {
@@ -117,25 +118,55 @@ public class Course {
                 System.out.println(aStudent.getName());       
         }
     }
-    static void MoreStudentsThan(int numCourses) {
-        System.out.println("==MoreStudentsThan==");
+
+ 
+
+    public static void MoreStudentsThan(int numCourses) {
+        System.out.println("==MoreStudentsThan==========");
         for (Course aCourse  : courses)
         {
             if (aCourse.students.size() > numCourses)
                 System.out.println(aCourse.getName());
         }        
     }
-    static void FemaleTeacher(){
-        System.out.println("==FemaleTeacher==");
+    
+    public static void FemaleTeacher() {
+        System.out.println("==FemaleTeacher==========");
         for (Course aCourse  : courses)
         {
-            if (aCourse.getTeacher().getGender() != null && 
+                if (aCourse.getTeacher() != null && 
                 aCourse.getTeacher().getGender() == Person.Gender.FEMALE)
-            {                
-                System.out.println(aCourse.getName());
-            }
+                    System.out.println(aCourse.getName());
+        }           
+    }
+    boolean hasStudent(Student student_){
+        System.out.println("hasStudent=====");
+        for(int i= 0; i<students.size();i++)
+            if(students.get(i) == student_)
+                return true;
+        
+        return false;
+    }
+    boolean MoreMaleStudents(){
+        int males = 0;
+        int females = 0;
+        System.out.println("=======MoreMaleStudents=======");
+        
+        for(int i= 0; i<students.size();i++){
+            if(students.get(i).getGender() == Person.Gender.MALE){
+                males++;
                 
-        }  
-    }   
-    
+            }
+            if(students.get(i).getGender() == Person.Gender.MALE){
+                females++;
+            }
+        }
+        if(males > females)
+            return true;
+        
+        
+        return false;
+    }
+        
+
 }

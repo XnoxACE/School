@@ -57,7 +57,8 @@ public class Student extends Person {
     }      
     public Course getCourse(int period) {
         return(courses[period]);
-    }    
+    }        
+            
     public double getGPA() {
         int numGrades = 0;
         double sum = 0;
@@ -99,36 +100,61 @@ public class Student extends Person {
             return;
         courses[_course.getPeriod()] = _course;
         gradeScores[_course.getPeriod()] = _gradeScore;
-    }  
-
-
-
+    }    
+    
+    
 //Queries==========================
-    static void TravelBy(Transportation transportation_){
-        System.out.println("======TravelBy======");
+    
+    public static void TravelBy(Transportation _transp) {
+        System.out.println("==TravelBy==========");
         for (Person aPerson  : people)
         {
-            if (aPerson instanceof Student){
-                if(((Student) aPerson).transportation == transportation_){
+            if (aPerson instanceof Student)
+            {
+                if (  ((Student)aPerson).getTransportation() == _transp    )
+                {
                     System.out.println(aPerson.getName());
                 }
-            }           
-        }   
+            }
+        }        
     }
     
-    Teacher YoungestTeacher(){
-        System.out.println("Youngest Teacher=======");
-        Teacher youngTeacher = null;
-        int age = 999;
-        for(int i = 0; i<courses.length; i++){
-            if(courses[i].getTeacher() != null){
-                Date teacher = new Date(this.courses[i].getTeacher().getDate());
-                if(teacher.getYearsOld() < age){
-                    age = teacher.getYearsOld();
-                    youngTeacher = this.courses[i].getTeacher();
+    public Teacher YoungestTeacher() {
+        System.out.println("==YoungestTeacher==========");
+        Teacher youngestTeacher = null;
+        int age = -1;
+        for (Course aCourse  : courses) {
+            if (aCourse != null && aCourse.getTeacher() != null) {
+                if (age == -1) {
+                    age = aCourse.getTeacher().getDate().getYearsOld();
+                    youngestTeacher = aCourse.getTeacher();
+                } else if (age > aCourse.getTeacher().getDate().getYearsOld()) {
+                    age = aCourse.getTeacher().getDate().getYearsOld();
+                    youngestTeacher = aCourse.getTeacher();                    
                 }
             }
         }
-        return youngTeacher; 
+        return (youngestTeacher);
     }
+    static void GradeLevel(int _gradeLevel){
+        System.out.println("=========GradeLevel============");
+        for (Person aPerson  : people){
+            if (aPerson instanceof Student){
+                if(((Student) aPerson).gradeLevel == _gradeLevel){
+                    System.out.println(aPerson.getName());
+                }
+            }
+        }
+    }
+    boolean hasTeacher(Teacher _teacher){
+        System.out.println("=====hasTeacher======");
+        for (Course aCourse  : courses){
+            if(aCourse != null){
+                if(aCourse.getTeacher()==_teacher)
+                    return true;
+            }
+        }
+        return false;
+    }
+
 }
