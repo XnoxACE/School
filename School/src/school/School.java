@@ -140,93 +140,64 @@ public class School {
             System.out.println(teacher.getName() +
             " is " + student.getName() + "'s youngest teacher.");
         
-        Student.GradeLevel(11);
-        
-        
-        teacher = (Teacher)mean;
-        if (student.hasTeacher(teacher))
-            System.out.println(student.getName() + " has " + teacher.getName() + " as a teacher.");
-        else
-            System.out.println(student.getName() + " does not have " + teacher.getName() + " as a teacher.");
-        
-        
+                //Challenging
+        //For a given teacher, return true if the passed in student is in the teachers class.
+        //Return false if the student is not in the teacher's class.
         student = (Student)manny;
         teacher = (Teacher)gonzalez;
         if (teacher.Teaches(student))
             System.out.println(teacher.getName() + " does teach " + student.getName());
         else
             System.out.println(teacher.getName() + " does not teach " + student.getName());
-        
-        
-        if (apush.hasStudent((Student)ann))
-            System.out.println(ann.getName() + " is a student in " + apush.getName());
+
+        //Print the name of the teachers that teach the student with the passed in id.
+        student = (Student)kiki;
+        Teacher.HaveStudentId(student.getId());
+
+
+        //Medium
+        //For the given student, return true if the passed in teacher teaches the student.
+        //Return false if the teacher does not teach the student.
+        student = (Student)jojo;
+        teacher = (Teacher)mean;
+        if (student.hasTeacher(teacher))
+            System.out.println(student.getName() + " has " + teacher.getName() + " as a teacher.");
         else
-            System.out.println(ann.getName() + " is not a student in " + apush.getName());
-        
+            System.out.println(student.getName() + " does not have " + teacher.getName() + " as a teacher.");
+
+        //For a given course, return true if the course has more male students than female students.
+        //Return false if the course does not have more male students than female students.
         Course course = stats;
         if (course.MoreMaleStudents())
             System.out.println(course.getName() + " has more male students.");
         else
             System.out.println(course.getName() + " does not have more male students.");
-        
-        student = (Student)kiki;
-        Teacher.HaveStudentId(student.getId());
-        
-        
-        /*
-//Easy
-//Print the name of all the students in the passed in grade level.        
+
+        //Easy
+        //Print the name of all the students in the passed in grade level.        
         Student.GradeLevel(11);
-        
-//For a given course, return true if the passed in student is in the course.
-//Return false if not in the course.         
+
+        //For a given course, return true if the passed in student is in the course.
+        //Return false if not in the course.         
         if (apush.hasStudent((Student)ann))
             System.out.println(ann.getName() + " is a student in " + apush.getName());
         else
             System.out.println(ann.getName() + " is not a student in " + apush.getName());
-            
-//For a given teacher, return true if the teacher teaches the passed in period.
+        
+        //For a given teacher, return true if the teacher teaches the passed in period.
 //Return false if teacher does not teach that period.
         int period = 1;
         if (((Teacher)hudson).hasPeriod(period))
             System.out.println(hudson.getName() + " does teach period " + period);
         else
             System.out.println(hudson.getName() + " does not teach period " + period);
-            
-//Medium
-//For the given student, return true if the passed in teacher teaches the student.
-//Return false if the teacher does not teach the student.
-        Student student = (Student)jojo;
-        teacher = (Teacher)mean;
-        if (student.hasTeacher(teacher))
-            System.out.println(student.getName() + " has " + teacher.getName() + " as a teacher.");
-        else
-            System.out.println(student.getName() + " does not have " + teacher.getName() + " as a teacher.");
-
-//For a given course, return true if the course has more male students than female students.
-//Return false if the course does not have more male students than female students.
-        Course course = stats;
-        if (course.MoreMaleStudents())
-            System.out.println(course.getName() + " has more male students.");
-        else
-            System.out.println(course.getName() + " does not have more male students.");
-            
-//Challenging
-//For a given teacher, return true if the passed in student is in the teachers class.
-//Return false if the student is not in the teacher's class.
-        student = (Student)manny;
-        teacher = (Teacher)gonzalez;
-        if (teacher.Teaches(student))
-            System.out.println(teacher.getName() + " does teach " + student.getName());
-        else
-            System.out.println(teacher.getName() + " does not teach " + student.getName());
-
-//Print the name of the teachers that teach the student with the passed in id.
-        student = (Student)kiki;
-        Teacher.HaveStudentId(student.getId());
         
-            
+        /*            
         */
     }
     
 }
+
+
+
+
